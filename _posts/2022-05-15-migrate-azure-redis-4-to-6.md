@@ -38,9 +38,9 @@ According to the nuget feed and the github activity this provider got the new ve
 #### Migrating to the latest Microsoft.Web.Redis.RedisSessionStateProvider with keeping the ASP.NET session data
 The link to the commit where the keys renamed [Keys renaming commit](https://github.com/Azure/aspnet-redis-providers/commit/790f764780e48dc5042ee8e89f9749ea3994a136)
 ```
-{{app}_{id}}_Data -> {{app}_{id}}_SessionStateItemCollection
-{{app}_{id}}_Write_Lock -> {{app}_{id}}_WriteLock
-{{app}_{id}}_Internal -> {{app}_{id}}_SessionTimeout
+\{\{app}_\{id\}\}_Data -> \{\{app\}_\{id\}\}_SessionStateItemCollection
+\{\{app}_\{id\}\}_Write_Lock -> \{\{app\}_\{id\}\}_WriteLock
+\{\{app\}_\{id\}\}_Internal -> \{\{app\}_\{id\}\}_SessionTimeout
 ```
 Moreover, the types (and as a result Redis command to operate by them) were changed:
 
