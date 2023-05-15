@@ -11,8 +11,7 @@ tags:
 # Azure Redis Cache v4 to v6 upgrade by June 30th, 2023
 
 As you probably know, Azure have the the Redis Cache service upgrade planned on June 30th, 2023
-[Microsoft.com Post](https://azure.microsoft.com/en-us/updates/upgrade-your-azure-cache-for-redis-instances-to-use-redis-version-6-by-30-june-2023/)
-https://azure.microsoft.com/en-us/updates/upgrade-your-azure-cache-for-redis-instances-to-use-redis-version-6-by-30-june-2023/
+[Microsoft.com post](https://azure.microsoft.com/en-us/updates/upgrade-your-azure-cache-for-redis-instances-to-use-redis-version-6-by-30-june-2023/)
 
 In this article I'll summarize some points for you about this process if you are also using Azure Redis Cache v4 in your application, as I do in several projects for a company that I work for.
 
@@ -38,9 +37,11 @@ According to the nuget feed and the github activity this provider got the new ve
 #### Migrating to the latest Microsoft.Web.Redis.RedisSessionStateProvider with keeping the ASP.NET session data
 The link to the commit where the keys renamed [Keys renaming commit](https://github.com/Azure/aspnet-redis-providers/commit/790f764780e48dc5042ee8e89f9749ea3994a136)
 ```
-\{\{app}_\{id\}\}_Data -> \{\{app\}_\{id\}\}_SessionStateItemCollection
-\{\{app}_\{id\}\}_Write_Lock -> \{\{app\}_\{id\}\}_WriteLock
-\{\{app\}_\{id\}\}_Internal -> \{\{app\}_\{id\}\}_SessionTimeout
+{% raw %}
+{{app}_{id}}_Data -> {{app}_{id}}_SessionStateItemCollection
+{{app}_{id}}_Write_Lock -> {{app}_{id}}_WriteLock
+{{app}_{id}}_Internal -> {{app}_{id}}_SessionTimeout
+{% endraw %}
 ```
 Moreover, the types (and as a result Redis command to operate by them) were changed:
 
