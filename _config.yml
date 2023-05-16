@@ -58,7 +58,7 @@ plugins:
 author:
   name   : "Sergey Firsov"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "A software engineer, husband, and a father. Do real things by own hands, dig to the root cause, do not work with people who put their ego upfront."
+  bio    : "A professional software engineer. Do real things by own hands mainly on C#/JS/C++ but not only, dig to the root cause of issues."
   links:
 #    - label: "Website"
 #      icon: "fas fa-fw fa-link"
