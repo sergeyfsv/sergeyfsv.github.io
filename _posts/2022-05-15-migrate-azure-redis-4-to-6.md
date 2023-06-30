@@ -31,10 +31,12 @@ The command line for running this tool will be pretty straightforward: a source 
 Update:
 My experience of using this tool (redis-copy) was not so smooth as expected. The tool takes too long to copy 800k keys it took about an hour and was not finished completely, by looking at the code of the tool it is kind of expected. The tool is single threaded.
 
-Another alternative could be https://developer.redis.com/riot/
+Another alternative could be [https://developer.redis.com/riot/](https://developer.redis.com/riot/)
 This tool supports different modes of working with redis instances: dry-run, comparison, migration, and the live mode for monitoring changes. Moreover, it has the set of parameters to configure the multithreading processing (--reader-batch, --reader-threads etc.).
 The final command line could look like this:
+```
 riot-redis -h 127.0.0.1 -p 6381 --db=0 --pass=SECRETPASSWORD1 replicate -h 127.0.0.1 -p 6381 --db=1 --pass=SECRETPASSWORD2 --batch=10000 --scan-count=10000 --threads=4 --reader-threads=4
+```
 
 ### Stackexchange Redis library versions
 If a project that you are working on is using Stackexchange library for communicating with a Azure Redis cache instance and its version is Stackexchange.Redis.Strongname, 1.2.6, probably that is also a suitable moment to upgrade it to the latest one Stackechange.Redis 2.6.111. Please check the [Stackexchange Changelog](https://stackexchange.github.io/StackExchange.Redis/ReleaseNotes.html), since the version 2.0.495 had the breaking changes.
