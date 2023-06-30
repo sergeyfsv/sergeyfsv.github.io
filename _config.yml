@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Developer life remarks
+title: Developer's life remarks
 email:
 description: >- # this means to ignore newlines until "baseurl:"
   My thoughts and ideas that I think are valuable and/or interesting for me, probably could be the same for you.
@@ -58,7 +58,7 @@ plugins:
 author:
   name   : "Sergey Firsov"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "A software engineer, husband, and a father. Do real things by own hands, dig to the root cause, do not work with people who put their ego upfront."
+  bio    : "A professional software engineer. Do real things by own hands mainly on C#/JS/C++ but not only, dig to the root cause of issues."
   links:
 #    - label: "Website"
 #      icon: "fas fa-fw fa-link"
@@ -88,7 +88,7 @@ footer:
 defaults:
   # _posts
   - scope:
-      path: ""
+      path: "_posts"
       type: posts
     values:
       layout: single
