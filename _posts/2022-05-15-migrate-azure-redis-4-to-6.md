@@ -29,8 +29,16 @@ As the Microsoft recommends, you can use
 [[redis-copy](https://github.com/deepakverma/redis-copy/releases/download/alpha/Release.zip)] the command line tool to copy all keys with their properties to a new/backup instance.
 The command line for running this tool will be pretty straightforward: a source instance connection string, a source instance authorization data, and the same for the destination. Unfortunately, the tool does not inform about the progress of the copying operation, it only shows 100% when the process is done. So, if you want to monitor the process and finally check the results, it is better to open the Metrics tabs of a corresponding instance in Azure and check that the metric of "Total keys" is increasing and eventually become the same as it it in the source instance.
 
+Update:
+My experience of using this tool (redis-copy) was not so smooth as expected. The tool takes too long to copy 800k keys it took about an hour and was not finished completely, by looking at the code of the tool it is kind of expected. The tool is single threaded.
+
+Another alternative could be https://developer.redis.com/riot/
+This tool supports different modes of working with redis instances: dry-run, comparison, migration, and the live mode for monitoring changes. Moreover, it has the set of parameters to configure the multithreading processing (--reader-batch, --reader-threads etc.).
+The final command line could look like this:
+riot-redis -h 127.0.0.1 -p 6381 --db=0 --pass=SECRETPASSWORD1 replicate -h 127.0.0.1 -p 6381 --db=1 --pass=SECRETPASSWORD2 --batch=10000 --scan-count=10000 --threads=4 --reader-threads=4
+
 ### Stackexchange Redis library versions
-If a project that you are working on is using Stackexchange library for communicating with a Azure Redis cache instance and its version i Stackexchange.Redis.Strongname, 1.2.6, probably that is also a suitable moment to upgrade it to the latest one Stackechange.Redis 2.6.111. Please check the[Stackexchange Changelog](https://stackexchange.github.io/StackExchange.Redis/ReleaseNotes.html), since the version 2.0.495 had the breaking changes.
+If a project that you are working on is using Stackexchange library for communicating with a Azure Redis cache instance and its version is the Stackexchange.Redis.Strongname, 1.2.6, probably that is also a suitable moment to upgrade it to the latest one Stackechange.Redis 2.6.111. Please check the[Stackexchange Changelog](https://stackexchange.github.io/StackExchange.Redis/ReleaseNotes.html), since the version 2.0.495 had the breaking changes.
 
 ### Microsoft.Web.Redis.RedisSessionStateProvider
 According to the nuget feed and the github activity this provider got the new version in March 2023, the previous update of this nuget package happened in 2018. So, the new 5.0.0 version of Microsoft.Web.Redis.RedisSessionStateProvider is using the latest Stackexchange.Redis library (2.6.101) and has the breaking change in the way of keeping the ASP.NET session data: keys were renamed and the way of serializing session data was changed as well (from the Redis hashset with the serialized values to the purely binary serialization of the whole ISessionStateItemCollection). It means that you cannot just upgrade package and having your ASP.NET session's data available again.
